@@ -59,7 +59,7 @@ function ProblemsSection() {
   return <section id="problems" className="problems-section" aria-label="고객의 문제">
     <div className="problems-visual">
       <img
-        src="/assets/customer-problems-v2.webp"
+        src={`${import.meta.env.BASE_URL}assets/customer-problems-v2.webp`}
         width="1492"
         height="1054"
         loading="lazy"
@@ -74,7 +74,7 @@ function ServicesSection() {
   return <section id="services" className="services-section" aria-label="제공하는 교육과 컨설팅">
     <div className="services-visual">
       <img
-        src="/assets/education-consulting-services-v2.webp"
+        src={`${import.meta.env.BASE_URL}assets/education-consulting-services-v2.webp`}
         width="1492"
         height="1054"
         loading="lazy"
