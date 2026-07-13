@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { Reveal } from './components/Reveal';
 import './styles.css';
 
 const Arrow = () => <span aria-hidden="true" className="arrow">→</span>;
@@ -57,7 +58,7 @@ function Workflow() {
 
 function ProblemsSection() {
   return <section id="problems" className="problems-section" aria-label="고객의 문제">
-    <div className="problems-visual">
+    <Reveal className="problems-visual">
       <img
         src={`${import.meta.env.BASE_URL}assets/customer-problems-v2.webp`}
         width="1492"
@@ -66,13 +67,13 @@ function ProblemsSection() {
         decoding="async"
         alt="AI를 사용해도 반복 복사, 연결 단절, 승인 병목 때문에 업무 흐름이 개선되지 않는 고객의 문제"
       />
-    </div>
+    </Reveal>
   </section>;
 }
 
 function ServicesSection() {
   return <section id="services" className="services-section" aria-label="제공하는 교육과 컨설팅">
-    <div className="services-visual">
+    <Reveal className="services-visual">
       <img
         src={`${import.meta.env.BASE_URL}assets/education-consulting-services-v2.webp`}
         width="1492"
@@ -81,13 +82,13 @@ function ServicesSection() {
         decoding="async"
         alt="AX 실무 교육, 업무 진단 설계, PoC 구축 지원을 연결하는 교육과 컨설팅 과정"
       />
-    </div>
+    </Reveal>
   </section>;
 }
 
 function App() {
   return <div className="page"><Header/><main><section className="hero">
-    <div className="hero-copy"><h1>AI 도구를<br/>소개하는 데서<br/><em>끝내지 않습니다.</em></h1><p>반복되는 업무를 찾고,<br/>실제로 작동하는 흐름으로 바꿉니다.</p><div className="hero-actions"><a className="primary" href="#education">교육 과정 보기 <Arrow/></a><a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a></div></div>
+    <Reveal className="hero-copy"><h1>AI 도구를<br/>소개하는 데서<br/><em>끝내지 않습니다.</em></h1><p>반복되는 업무를 찾고,<br/>실제로 작동하는 흐름으로 바꿉니다.</p><div className="hero-actions"><a className="primary" href="#education">교육 과정 보기 <Arrow/></a><a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a></div></Reveal>
     <Workflow/>
   </section><ProblemsSection/><ServicesSection/></main></div>;
 }
