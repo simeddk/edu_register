@@ -26,7 +26,7 @@ export function Reveal({
   children,
   className,
   as: Tag = 'div',
-  delay = 500,
+  delay = 300,
   index = 0,
   threshold = 0.15,
 }: RevealProps) {
