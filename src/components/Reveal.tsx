@@ -26,12 +26,12 @@ export function Reveal({
   children,
   className,
   as: Tag = 'div',
-  delay = 300,
+  delay,
   index = 0,
   threshold = 0.15,
 }: RevealProps) {
   const elementRef = useRef<HTMLElement | null>(null);
-  const resolvedDelay = delay + index * 100;
+  const resolvedDelay = delay ?? index * 100;
   const classes = ['reveal', className].filter(Boolean).join(' ');
   const style: RevealStyle = {
     '--reveal-delay': `${Math.max(0, resolvedDelay)}ms`,
