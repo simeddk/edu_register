@@ -111,13 +111,31 @@ const processSteps = [
 ];
 
 function ProcessSection() {
-  return <section id="process" className="process-section" aria-labelledby="process-title">
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+  const [signalActive, setSignalActive] = React.useState(false);
+
+  React.useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || signalActive || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+        setSignalActive(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.35 });
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [signalActive]);
+
+  return <section ref={sectionRef} id="process" className="process-section" aria-labelledby="process-title">
     <Reveal className="process-content">
       <p className="process-label">진행 방식</p>
       <h2 id="process-title">상담부터 현장 적용까지,<br/>단계별로 진행합니다.</h2>
       <p className="process-intro">업무 환경을 확인하고 구현과 검증을 거쳐<br/>실제 활용까지 연결합니다.</p>
       <div className="process-panel">
-        <ol className="process-list">
+        <ol className={`process-list${signalActive ? ' is-signal-active' : ''}`}>
           {processSteps.map((step) => <li className="process-step" key={step.number}>
             <span className="process-node" aria-hidden="true">{step.number}</span>
             <div className="process-copy">
