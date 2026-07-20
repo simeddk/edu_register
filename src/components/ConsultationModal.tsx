@@ -75,7 +75,7 @@ export function ConsultationModal({ open, onClose }: ConsultationModalProps) {
       window.cancelAnimationFrame(animationFrame);
       window.clearTimeout(closeTimer);
     };
-  }, [open, mounted]);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { ConsultationModal } from './components/ConsultationModal';
 import { Reveal } from './components/Reveal';
 import './styles.css';
 
@@ -37,10 +38,10 @@ const stages = [
   { title: '사람의 검토와 승인', content: <ApprovalPanel /> },
 ];
 
-function Header() {
+function Header({ onConsultationOpen }: { onConsultationOpen: () => void }) {
   return <header className="site-header">
     <a className="logo" href="#" aria-label="Maker platform 홈"><span className="maker">MAKER<i aria-hidden="true"/></span><span className="platform">platform</span></a>
-    <nav aria-label="주요 메뉴"><a href="#education">교육·컨설팅</a><a href="#cases">적용 사례</a><a href="#process">진행 과정</a><a href="#faq">FAQ</a><a className="nav-cta" href="#contact">상담 신청</a></nav>
+    <nav aria-label="주요 메뉴"><a href="#education">교육·컨설팅</a><a href="#cases">적용 사례</a><a href="#process">진행 과정</a><a href="#faq">FAQ</a><button className="nav-cta" type="button" onClick={onConsultationOpen}>상담 신청</button></nav>
   </header>;
 }
 
@@ -153,7 +154,7 @@ const faqItems = [
   },
 ];
 
-function FaqSection() {
+function FaqSection({ onConsultationOpen }: { onConsultationOpen: () => void }) {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(0);
 
   return <section id="faq" className="faq-section" aria-labelledby="faq-title">
@@ -203,7 +204,7 @@ function FaqSection() {
           <p>현재 업무 환경과 목표를 알려주시면<br/>{' '}적합한 교육과 적용 방향을 함께 검토합니다.</p>
         </div>
         <div className="hero-actions final-cta-actions">
-          <a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a>
+          <button className="secondary" type="button" onClick={onConsultationOpen}>AX 상담 신청 <Arrow/></button>
         </div>
       </div>
     </Reveal>
@@ -211,10 +212,13 @@ function FaqSection() {
 }
 
 function App() {
-  return <div className="page"><Header/><main><section className="hero">
-    <Reveal className="hero-copy"><h1>AI 도구를<br/>소개하는 데서<br/><em>끝내지 않습니다.</em></h1><p>반복되는 업무를 찾고,<br/>실제로 작동하는 흐름으로 바꿉니다.</p><div className="hero-actions"><a className="primary" href="#services">교육·컨설팅 보기 <Arrow/></a><a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a></div></Reveal>
+  const [isConsultationOpen, setConsultationOpen] = React.useState(false);
+  const openConsultation = () => setConsultationOpen(true);
+
+  return <div className="page"><Header onConsultationOpen={openConsultation}/><main><section className="hero">
+    <Reveal className="hero-copy"><h1>AI 도구를<br/>소개하는 데서<br/><em>끝내지 않습니다.</em></h1><p>반복되는 업무를 찾고,<br/>실제로 작동하는 흐름으로 바꿉니다.</p><div className="hero-actions"><a className="primary" href="#services">교육·컨설팅 보기 <Arrow/></a><button className="secondary" type="button" onClick={openConsultation}>AX 상담 신청 <Arrow/></button></div></Reveal>
     <Workflow/>
-  </section><ProblemsSection/><ServicesSection/><CasesSection/><ProcessSection/><FaqSection/></main></div>;
+  </section><ProblemsSection/><ServicesSection/><CasesSection/><ProcessSection/><FaqSection onConsultationOpen={openConsultation}/></main><ConsultationModal open={isConsultationOpen} onClose={() => setConsultationOpen(false)}/></div>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
