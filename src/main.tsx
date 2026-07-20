@@ -165,17 +165,36 @@ function FaqSection() {
           <p>교육과 업무 시스템 연동,<br/>{' '}PoC와 보안에 관한 질문을 정리했습니다.</p>
         </div>
         <div className="faq-panel">
-          {faqItems.map((item, index) => <details
-            key={item.question}
-            open={activeIndex === index}
-            onToggle={(event) => {
-              const isOpen = event.currentTarget.open;
-              setActiveIndex((current) => isOpen ? index : current === index ? null : current);
-            }}
-          >
-            <summary aria-expanded={activeIndex === index} aria-controls={`faq-answer-${index}`}>{item.question}</summary>
-            <p id={`faq-answer-${index}`}>{item.answer}</p>
-          </details>)}
+          {faqItems.map((item, index) => {
+            const isOpen = activeIndex === index;
+            const questionId = `faq-question-${index}`;
+            const answerId = `faq-answer-${index}`;
+
+            return <div className={`faq-item${isOpen ? ' is-open' : ''}`} key={item.question}>
+              <button
+                id={questionId}
+                className="faq-question"
+                type="button"
+                aria-expanded={isOpen}
+                aria-controls={answerId}
+                onClick={() => setActiveIndex(isOpen ? null : index)}
+              >
+                <span>{item.question}</span>
+                <svg className="faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </button>
+              <div
+                id={answerId}
+                className="faq-answer-panel"
+                role="region"
+                aria-labelledby={questionId}
+                aria-hidden={!isOpen}
+              >
+                <div className="faq-answer-inner"><p>{item.answer}</p></div>
+              </div>
+            </div>;
+          })}
         </div>
       </div>
       <div className="final-cta-panel">
