@@ -154,25 +154,34 @@ const faqItems = [
 ];
 
 function FaqSection() {
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(0);
+
   return <section id="faq" className="faq-section" aria-labelledby="faq-title">
     <Reveal className="faq-content">
       <div className="faq-layout">
         <div className="faq-heading">
           <p className="process-label">FAQ</p>
           <h2 id="faq-title">도입 전에 궁금한 점을<br/>확인해 보세요.</h2>
-          <p>교육과 업무 시스템 연동,<br/>PoC와 보안에 관한 질문을 정리했습니다.</p>
+          <p>교육과 업무 시스템 연동,<br/>{' '}PoC와 보안에 관한 질문을 정리했습니다.</p>
         </div>
         <div className="faq-panel">
-          {faqItems.map((item, index) => <details key={item.question} open={index === 0}>
-            <summary>{item.question}</summary>
-            <p>{item.answer}</p>
+          {faqItems.map((item, index) => <details
+            key={item.question}
+            open={activeIndex === index}
+            onToggle={(event) => {
+              const isOpen = event.currentTarget.open;
+              setActiveIndex((current) => isOpen ? index : current === index ? null : current);
+            }}
+          >
+            <summary aria-expanded={activeIndex === index} aria-controls={`faq-answer-${index}`}>{item.question}</summary>
+            <p id={`faq-answer-${index}`}>{item.answer}</p>
           </details>)}
         </div>
       </div>
       <div className="final-cta-panel">
         <div>
           <h3>우리 업무에도 적용할 수 있을까요?</h3>
-          <p>현재 업무 환경과 목표를 알려주시면<br/>적합한 교육과 적용 방향을 함께 검토합니다.</p>
+          <p>현재 업무 환경과 목표를 알려주시면<br/>{' '}적합한 교육과 적용 방향을 함께 검토합니다.</p>
         </div>
         <div className="hero-actions final-cta-actions">
           <a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a>
