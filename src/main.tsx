@@ -101,11 +101,40 @@ function CasesSection() {
   </section>;
 }
 
+const processSteps = [
+  { number: '01', title: '상담', description: '해결하려는 문제와 현재 업무 환경을 확인합니다.' },
+  { number: '02', title: '업무 분석', description: '반복되거나 연결이 필요한 업무 지점을 찾습니다.' },
+  { number: '03', title: '작은 PoC', description: '핵심 기능을 담은 작은 결과물을 구현합니다.' },
+  { number: '04', title: '검증', description: '실제 데이터와 사용 흐름을 기준으로 가능성을 확인합니다.' },
+  { number: '05', title: '교육·적용', description: '담당자가 직접 활용할 수 있도록 현장에 연결합니다.' },
+];
+
+function ProcessSection() {
+  return <section id="process" className="process-section" aria-labelledby="process-title">
+    <Reveal className="process-content">
+      <p className="process-label">진행 방식</p>
+      <h2 id="process-title">상담부터 현장 적용까지,<br/>단계별로 진행합니다.</h2>
+      <p className="process-intro">업무 환경을 확인하고 구현과 검증을 거쳐<br/>실제 활용까지 연결합니다.</p>
+      <div className="process-panel">
+        <ol className="process-list">
+          {processSteps.map((step) => <li className="process-step" key={step.number}>
+            <span className="process-node" aria-hidden="true">{step.number}</span>
+            <div className="process-copy">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </li>)}
+        </ol>
+      </div>
+    </Reveal>
+  </section>;
+}
+
 function App() {
   return <div className="page"><Header/><main><section className="hero">
     <Reveal className="hero-copy"><h1>AI 도구를<br/>소개하는 데서<br/><em>끝내지 않습니다.</em></h1><p>반복되는 업무를 찾고,<br/>실제로 작동하는 흐름으로 바꿉니다.</p><div className="hero-actions"><a className="primary" href="#education">교육 과정 보기 <Arrow/></a><a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a></div></Reveal>
     <Workflow/>
-  </section><ProblemsSection/><ServicesSection/><CasesSection/></main></div>;
+  </section><ProblemsSection/><ServicesSection/><CasesSection/><ProcessSection/></main></div>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
