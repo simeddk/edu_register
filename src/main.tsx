@@ -86,11 +86,26 @@ function ServicesSection() {
   </section>;
 }
 
+function CasesSection() {
+  return <section id="cases" className="cases-section" aria-label="교육과 구축 사례">
+    <Reveal className="cases-visual">
+      <img
+        src={`${import.meta.env.BASE_URL}assets/education-build-cases-v1.webp`}
+        width="1536"
+        height="1024"
+        loading="lazy"
+        decoding="async"
+        alt="교육 현장 사진과 엔지니어링사 안전관리, 공공기관 교량점검, 공공시설 묘역관리 구축 사례"
+      />
+    </Reveal>
+  </section>;
+}
+
 function App() {
   return <div className="page"><Header/><main><section className="hero">
     <Reveal className="hero-copy"><h1>AI 도구를<br/>소개하는 데서<br/><em>끝내지 않습니다.</em></h1><p>반복되는 업무를 찾고,<br/>실제로 작동하는 흐름으로 바꿉니다.</p><div className="hero-actions"><a className="primary" href="#education">교육 과정 보기 <Arrow/></a><a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a></div></Reveal>
     <Workflow/>
-  </section><ProblemsSection/><ServicesSection/></main></div>;
+  </section><ProblemsSection/><ServicesSection/><CasesSection/></main></div>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);

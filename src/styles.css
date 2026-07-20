@@ -10,3 +10,6 @@
 @media(max-width:680px){.problems-section{padding:58px 14px 72px}.problems-visual{width:100%}}
 .services-section{padding:clamp(36px,4vw,64px) clamp(20px,4vw,72px) clamp(76px,8vw,132px);background:linear-gradient(180deg,#031124 0%,#041226 52%,#031124 100%)}.services-visual{width:min(100%,1491px);margin:0 auto}.services-visual img{display:block;width:100%;height:auto;object-fit:contain}
 @media(max-width:680px){.services-section{padding:32px 14px 72px}.services-visual{width:100%}}
+
+.cases-section{padding:clamp(36px,4vw,64px) clamp(20px,4vw,72px) clamp(76px,8vw,132px);background:linear-gradient(180deg,#031124 0%,#041226 52%,#031124 100%)}.cases-visual{width:min(100%,1491px);margin:0 auto}.cases-visual img{display:block;width:100%;height:auto;object-fit:contain}
+@media(max-width:680px){.cases-section{padding:32px 14px 72px}.cases-visual{width:100%}}
