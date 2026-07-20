@@ -104,7 +104,7 @@ function CasesSection() {
 const processSteps = [
   { number: '01', title: '상담', description: '해결하려는 문제와 현재 업무 환경을 확인합니다.' },
   { number: '02', title: '업무 분석', description: '반복되거나 연결이 필요한 업무 지점을 찾습니다.' },
-  { number: '03', title: '작은 PoC', description: '핵심 기능을 담은 작은 결과물을 구현합니다.' },
+  { number: '03', title: 'PoC 구축', description: '핵심 기능을 중심으로 검증 가능한 결과물을 구현합니다.' },
   { number: '04', title: '검증', description: '실제 데이터와 사용 흐름을 기준으로 가능성을 확인합니다.' },
   { number: '05', title: '교육·적용', description: '담당자가 직접 활용할 수 있도록 현장에 연결합니다.' },
 ];
