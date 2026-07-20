@@ -40,7 +40,7 @@ const stages = [
 function Header() {
   return <header className="site-header">
     <a className="logo" href="#" aria-label="Maker platform 홈"><span className="maker">MAKER<i aria-hidden="true"/></span><span className="platform">platform</span></a>
-    <nav aria-label="주요 메뉴"><a href="#education">교육·컨설팅</a><a href="#cases">적용 사례</a><a href="#process">진행 과정</a><a href="#about">소개</a><a className="nav-cta" href="#contact">상담 신청</a></nav>
+    <nav aria-label="주요 메뉴"><a href="#education">교육·컨설팅</a><a href="#cases">적용 사례</a><a href="#process">진행 과정</a><a href="#faq">FAQ</a><a className="nav-cta" href="#contact">상담 신청</a></nav>
   </header>;
 }
 
@@ -130,11 +130,63 @@ function ProcessSection() {
   </section>;
 }
 
+const faqItems = [
+  {
+    question: '코딩을 몰라도 교육을 받을 수 있나요?',
+    answer: '네. 코딩이나 개발 전공 지식이 없어도 참여할 수 있습니다.\n화면과 업무 흐름을 직접 구성하는 노코드 방식으로 진행하며,\n교육 대상과 목적에 맞춰 실습 난이도를 조정합니다.',
+  },
+  {
+    question: '우리 회사 문서를 AI에 연결할 수 있나요?',
+    answer: '가능합니다.\n문서 형식과 저장 위치, 사용할 AI 서비스와 보안 요건을 확인한 뒤\nAPI, OCR, 문서 검색 등 적합한 연결 방법을 검토합니다.',
+  },
+  {
+    question: '기존 DB나 업무 시스템과 연동할 수 있나요?',
+    answer: '기존 DB와 그룹웨어, ERP 등 업무 시스템과의 연동을 검토할 수 있습니다.\n실제 연동 방식은 해당 시스템의 API 제공 여부와 접근 권한,\n인증 방식 및 운영 환경을 확인한 뒤 결정합니다.',
+  },
+  {
+    question: 'PoC는 어떤 범위로 진행하나요?',
+    answer: '확인하려는 목표와 데이터, 연동 환경에 따라 범위를 정합니다.\n상담을 통해 우선 검증할 핵심 기능을 선정하고,\n검증 결과에 따라 적용 범위를 확장할 수 있습니다.',
+  },
+  {
+    question: '보안이 중요한 문서는 어떻게 다루나요?',
+    answer: '문서의 저장 위치와 외부 전송 여부, 사용자 접근 권한,\n고객사의 보안 정책을 먼저 확인합니다.\n민감한 정보가 포함된 경우에는 사용할 수 있는 AI 환경과\n데이터 처리 방식을 사전에 검토한 뒤 적합한 구성을 제안합니다.',
+  },
+];
+
+function FaqSection() {
+  return <section id="faq" className="faq-section" aria-labelledby="faq-title">
+    <Reveal className="faq-content">
+      <div className="faq-layout">
+        <div className="faq-heading">
+          <p className="process-label">FAQ</p>
+          <h2 id="faq-title">도입 전에 궁금한 점을<br/>확인해 보세요.</h2>
+          <p>교육과 업무 시스템 연동,<br/>PoC와 보안에 관한 질문을 정리했습니다.</p>
+        </div>
+        <div className="faq-panel">
+          {faqItems.map((item, index) => <details key={item.question} open={index === 0}>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>)}
+        </div>
+      </div>
+      <div className="final-cta-panel">
+        <div>
+          <h3>우리 업무에도 적용할 수 있을까요?</h3>
+          <p>현재 업무 환경과 목표를 알려주시면<br/>적합한 교육과 적용 방향을 함께 검토합니다.</p>
+        </div>
+        <div className="hero-actions final-cta-actions">
+          <a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a>
+        </div>
+      </div>
+    </Reveal>
+  </section>;
+}
+
 function App() {
   return <div className="page"><Header/><main><section className="hero">
     <Reveal className="hero-copy"><h1>AI 도구를<br/>소개하는 데서<br/><em>끝내지 않습니다.</em></h1><p>반복되는 업무를 찾고,<br/>실제로 작동하는 흐름으로 바꿉니다.</p><div className="hero-actions"><a className="primary" href="#services">교육·컨설팅 보기 <Arrow/></a><a className="secondary" href="#contact">AX 상담 신청 <Arrow/></a></div></Reveal>
     <Workflow/>
-  </section><ProblemsSection/><ServicesSection/><CasesSection/><ProcessSection/></main></div>;
+  </section><ProblemsSection/><ServicesSection/><CasesSection/><ProcessSection/><FaqSection/></main></div>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
